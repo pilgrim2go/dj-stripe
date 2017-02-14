@@ -41,8 +41,7 @@ def sync_plans():
                 del(api_kwargs['stripe_plan_id'])
                 del(api_kwargs['price'])
                 del(api_kwargs['description'])
-
-                Plan._api_create(**api_kwargs)
+                plan = Plan.sync_from_stripe_data(api_kwargs)
                 print("Plan created for {0}".format(plan))
             except Exception as e:
                 print("ERROR: " + str(e))
